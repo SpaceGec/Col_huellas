@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe de Evaluación por Competencias - COL. HUELLAS DE LA ESPERANZA</title>
+    <!-- Incluya la librería Chart.js aquí para visualizar los gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #004085;
+        }
+        h1 {
+            text-align: center;
+            border-bottom: 3px solid #004085;
+            padding-bottom: 10px;
+        }
+        h2 {
+            border-left: 5px solid #ffc107;
+            padding-left: 10px;
+            margin-top: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        .performance-table td:nth-child(1), .top10-table td:nth-child(2) {
+            text-align: left;
+        }
+        .key-metric {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #28a745;
+        }
+        .recommendations ol {
+            list-style-type: decimal;
+            padding-left: 20px;
+        }
+        .recommendations li {
+            margin-bottom: 15px;
+        }
+        .grade-scale {
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        .grade-scale th {
+            background-color: #6c757d;
+        }
+        .chart-container {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            min-height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .chart-container canvas {
+            max-height: 400px; 
+            width: 100% !important; 
+        }
+        .area-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .area-list li {
+            border: 1px solid #ddd;
+            padding: 15px;
+            flex: 1 1 calc(50% - 20px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            background: #fafafa;
+        }
+        .area-list h4 {
+            color: #007bff;
+            margin-top: 0;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+        }
+        .student-item {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>INFORME DE EVALUACIÓN POR COMPETENCIAS</h1>
+<h2>Presentación de Resultados Misiones Alfa y Beta</h2>
+<h3>COL. HUELLAS DE LA ESPERANZA (ATLÁNTICO - MALAMBO)</h3>
+<p><strong>DANE:</strong> 308433075654 | <strong>Fecha del Informe:</strong> 2025-11-19</p>
+<p><strong>Elaborado por:</strong> GRUPO EDUCATE COLOMBIA</p>
+
+<p>Estimados directivos y docentes del COL. HUELLAS DE LA ESPERANZA, presentamos el análisis comparativo de los resultados obtenidos por sus estudiantes de 1° a 5° grado en las pruebas Misión Alfa (Diagnóstico Inicial) y Misión Beta (Seguimiento). Los resultados reflejan un progreso significativo en el desempeño institucional.</p>
+
+<hr>
+
+<h2>ESCALA DE DESEMPEÑO INSTITUCIONAL</h2>
+<table class="grade-scale">
+    <thead>
+        <tr>
+            <th>Desempeño</th>
+            <th>Rango Inferior</th>
+            <th>Rango Superior</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>Superior</td><td>4.61</td><td>5.00</td></tr>
+        <tr><td>Superior (Alto Rango)</td><td>4.21</td><td>4.60</td></tr>
+        <tr><td>ALTO</td><td>3.81</td><td>4.20</td></tr>
+        <tr><td>ALTO (Básico Rango)</td><td>3.41</td><td>3.80</td></tr>
+        <tr><td>ALTO (Mínimo Rango)</td><td>3.21</td><td>3.40</td></tr>
+        <tr><td>BÁSICO</td><td>2.91</td><td>3.20</td></tr>
+        <tr><td>BÁSICO (Medio Rango)</td><td>2.71</td><td>2.90</td></tr>
+        <tr><td>BÁSICO (Mínimo Rango)</td><td>2.51</td><td>2.70</td></tr>
+        <tr><td>BAJO</td><td>2.01</td><td>2.50</td></tr>
+        <tr><td>BAJO (Medio Rango)</td><td>1.51</td><td>2.00</td></tr>
+        <tr><td>BAJO (Crítico)</td><td>1.00</td><td>1.50</td></tr>
+    </tbody>
+</table>
+
+<hr>
+
+<h2>ANÁLISIS DE RESULTADOS</h2>
+
+<h3>1. Gráfica de Barra Comparativo por Promedio General Institucional</h3>
+<p>El promedio general institucional aumentó de Alfa a Beta de 3.27 (BÁSICO) a 3.95 (ALTO), lo que indica un progreso efectivo y significativo en el periodo evaluado.</p>
+<table>
+    <thead>
+        <tr>
+            <th>Prueba</th>
+            <th>Promedio Institucional General</th>
+            <th>Desempeño</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Misión Alfa (G1-G5)</td>
+            <td><span class="key-metric">3.27</span></td>
+            <td>BÁSICO</td>
+        </tr>
+        <tr>
+            <td>Misión Beta (G1-G5)</td>
+            <td><span class="key-metric">3.95</span></td>
+            <td>ALTO</td>
+        </tr>
+    </tbody>
+</table>
+<div class="chart-container">
+    <canvas id="chart-promedio-general"></canvas>
+</div>
+
+<h3>2. Gráfica de Barra que Compare el Promedio de las Áreas en Cada Prueba</h3>
+<p>Se evidencia una mejora consistente en todas las áreas. El área de Inglés muestra la mayor variación positiva, aunque sigue requiriendo atención. Matemáticas y Lenguaje consolidan su desempeño en el nivel ALTO.</p>
+<table>
+    <thead>
+        <tr>
+            <th>Área</th>
+            <th>Promedio Misión Alfa</th>
+            <th>Promedio Misión Beta</th>
+            <th>Variación</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>LENGUAJE</td><td>3.40</td><td>4.19</td><td>+0.79</td></tr>
+        <tr><td>CIENCIAS NATURALES</td><td>3.25</td><td>3.97</td><td>+0.72</td></tr>
+        <tr><td>MATEMÁTICAS</td><td>3.78</td><td>4.01</td><td>+0.23</td></tr>
+        <tr><td>SOCIALES Y CIUDADANAS</td><td>3.32</td><td>3.97</td><td>+0.65</td></tr>
+        <tr><td>INGLÉS</td><td>2.78</td><td>3.94</td><td>+1.16</td></tr>
+    </tbody>
+</table>
+<div class="chart-container">
+    <canvas id="chart-area-comparison"></canvas>
+</div>
+
+<h3>3. Gráfico de Araña para Comparar el Rendimiento por Grados</h3>
+<p>Todos los grados alcanzaron el Desempeño ALTO en la Misión Beta. Los grados 1 y 2, que iniciaron en un nivel BÁSICO alto en la Misión Alfa, son los que lograron la mayor consolidación.</p>
+<table>
+    <thead>
+        <tr>
+            <th>Grado</th>
+            <th>Promedio Alfa</th>
+            <th>Promedio Beta</th>
+            <th>Desempeño Beta</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>Grado 1</td><td>3.45</td><td>4.10</td><td>ALTO</td></tr>
+        <tr><td>Grado 2</td><td>3.50</td><td>4.11</td><td>ALTO</td></tr>
+        <tr><td>Grado 3</td><td>2.99</td><td>3.48</td><td>ALTO (Mínimo Rango)</td></tr>
+        <tr><td>Grado 4</td><td>3.24</td><td>3.80</td><td>ALTO (Básico Rango)</td></tr>
+        <tr><td>Grado 5</td><td>3.06</td><td>3.73</td><td>ALTO (Básico Rango)</td></tr>
+    </tbody>
+</table>
+<div class="chart-container" style="max-width: 600px;">
+    <canvas id="chart-grade-comparison"></canvas>
+</div>
+
+<h3>4. Gráfico de Promedio de Áreas, Incluyendo la Desviación</h3>
+<p>La desviación estándar (SD) mide la dispersión de los resultados. El área con mayor dispersión es INGLÉS (SD 0.72), indicando que el desempeño es muy heterogéneo (hay estudiantes en Superior y otros muy cerca de BAJO). Matemáticas es la más homogénea (SD 0.48).</p>
+<table>
+    <thead>
+        <tr>
+            <th>Área</th>
+            <th>Media Institucional (µ)</th>
+            <th>Desviación Estándar (SD)</th>
+            <th>Límite Inferior (µ - SD)</th>
+            <th>Límite Superior (µ + SD)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>LENGUAJE</td><td>3.80</td><td>0.60</td><td>3.20 (BÁSICO)</td><td>4.40 (Superior)</td></tr>
+        <tr><td>CIENCIAS NATURALES</td><td>3.61</td><td>0.56</td><td>3.05 (BÁSICO)</td><td>4.17 (ALTO)</td></tr>
+        <tr><td>MATEMÁTICAS</td><td>3.90</td><td>0.48</td><td>3.42 (ALTO)</td><td>4.38 (Superior)</td></tr>
+        <tr><td>SOCIALES Y CIUDADANAS</td><td>3.65</td><td>0.65</td><td>3.00 (BÁSICO)</td><td>4.30 (Superior)</td></tr>
+        <tr><td>INGLÉS</td><td>3.36</td><td>0.72</td><td>2.64 (BÁSICO)</td><td>4.08 (ALTO)</td></tr>
+    </tbody>
+</table>
+<div class="chart-container">
+    <canvas id="chart-deviation"></canvas>
+</div>
+
+<h3>5. Gráfico de Barras Apiladas: Porcentaje de Estudiantes por Niveles de Desempeño (Misión Beta)</h3>
+<p>Institucionalmente, el 94.6% de los estudiantes se encuentran en Desempeño ALTO o SUPERIOR en la Misión Beta, un logro extraordinario comparado con el 34.2% inicial de la Misión Alfa.</p>
+
+<h4>Distribución Global de Desempeño (Misión Beta)</h4>
+<table>
+    <thead>
+        <tr>
+            <th>Desempeño</th>
+            <th>% Alfa</th>
+            <th>% Beta</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>Superior (S)</td><td>1.4%</td><td>30.7%</td></tr>
+        <tr><td>ALTO (A)</td><td>32.8%</td><td>63.9%</td></tr>
+        <tr><td>BÁSICO (B)</td><td>48.8%</td><td>5.4%</td></tr>
+        <tr><td>BAJO (BJ)</td><td>17.0%</td><td>0.0%</td></tr>
+    </tbody>
+</table>
+
+<h4>Porcentaje de Estudiantes por Nivel de Desempeño por Área (Misión Beta)</h4>
+<div class="chart-container">
+    <canvas id="chart-stacked-performance"></canvas>
+</div>
+
+<hr>
+
+<h2>ESTUDIANTES DESTACADOS (Misión Beta)</h2>
+
+<h3>TOP 10 Estudiantes por Promedio General Institucional</h3>
+<table class="top10-table">
+    <thead>
+        <tr><th>Puesto</th><th>Estudiante</th><th>Grado</th><th>PUNTAJE</th><th>Desempeño</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>1</td><td>Quintero Camargo Paulina</td><td>2</td><td>4.8</td><td>Superior</td></tr>
+        <tr><td>2</td><td>Carranza Cotuas Valentina</td><td>4</td><td>4.7</td><td>Superior</td></tr>
+        <tr><td>3</td><td>Dávila Cabarcas Wilmer David</td><td>5</td><td>4.6</td><td>Superior</td></tr>
+        <tr><td>3</td><td>Blandón Vasquez Kisiani</td><td>2</td><td>4.6</td><td>Superior</td></tr>
+        <tr><td>3</td><td>Carrillo Meza Isaías Andrés</td><td>2</td><td>4.6</td><td>Superior</td></tr>
+        <tr><td>3</td><td>Parody Gutierrez Yulibeth Sophia</td><td>2</td><td>4.6</td><td>Superior</td></tr>
+        <tr><td>7</td><td>Ramírez Buelvas Maylen Briseth</td><td>5</td><td>4.5</td><td>Superior</td></tr>
+        <tr><td>7</td><td>Garizabalo Urbino Emmanuel David</td><td>2</td><td>4.5</td><td>Superior</td></tr>
+        <tr><td>7</td><td>Inciarte Aybis Nicolle</td><td>2</td><td>4.5</td><td>Superior</td></tr>
+        <tr><td>7</td><td>Rúa Borja Lianara Nicole</td><td>2</td><td>4.5</td><td>Superior</td></tr>
+    </tbody>
+</table>
+
+<h3>TOP 10 por Área (Institucional Beta)</h3>
+
+<ul class="area-list">
+    <li>
+        <h4>LENGUAJE</h4>
+        <span class="student-item">Blandón Vasquez Kisiani (G2) - 5.0</span>
+        <span class="student-item">Parody Gutierrez Yulibeth Sophia (G2) - 5.0</span>
+        <span class="student-item">Quintero Camargo Paulina (G2) - 5.0</span>
+        <span class="student-item">Garizabalo Urbino Emmanuel David (G2) - 5.0</span>
+        <span class="student-item">Inciarte Aybis Nicolle (G2) - 5.0</span>
+        <span class="student-item">Palacio Morales Heider Stick (G2) - 5.0</span>
+        <span class="student-item">Correa Salazar Ashley (G2) - 5.0</span>
+        <span class="student-item">Mendoza Lopez Luis Miguel (G2) - 5.0</span>
+        <span class="student-item">Barrios Flores Argel Luis (G2) - 5.0</span>
+        <span class="student-item">Correa Rojas Diana Valentina (G2) - 5.0</span>
+    </li>
+    <li>
+        <h4>CIENCIAS NATURALES</h4>
+        <span class="student-item">Altamar Rodriguez Samantha Lucia (G1) - 4.7</span>
+        <span class="student-item">Blandón Vasquez Kisiani (G2) - 4.7</span>
+        <span class="student-item">Carrillo Meza Isaías Andrés (G2) - 4.7</span>
+        <span class="student-item">Ramírez Buelvas Maylen Briseth (G5) - 4.6</span>
+        <span class="student-item">Fornariz Rangel Rodolfo Davic (G4) - 4.6</span>
+        <span class="student-item">Carranza Cotuas Valentina (G4) - 4.6</span>
+        <span class="student-item">Leal Paz Sebastian Alejandro (G5) - 4.6</span>
+        <span class="student-item">Hernández Peñaloza Mathias Andrés (G3) - 4.4</span>
+        <span class="student-item">Quintero Camargo Paulina (G2) - 4.5</span>
+        <span class="student-item">Mier Vega Luis Angel (G2) - 4.5</span>
+    </li>
+    <li>
+        <h4>MATEMÁTICAS</h4>
+        <span class="student-item">Quintero Camargo Paulina (G2) - 5.0</span>
+        <span class="student-item">Carranza Cotuas Valentina (G4) - 5.0</span>
+        <span class="student-item">Carranza Cotuas Violetta (G4) - 5.0</span>
+        <span class="student-item">Fornariz Rangel Rodolfo Davic (G4) - 5.0</span>
+        <span class="student-item">Rua Borja Lian Samuel (G4) - 5.0</span>
+        <span class="student-item">Ortega Palacio Almelys (G4) - 5.0</span>
+        <span class="student-item">Gamarra Márquez Vivian Sofia (G4) - 5.0</span>
+        <span class="student-item">Vizcaíno Berdugo María José (G4) - 5.0</span>
+        <span class="student-item">Zambrano Polo Natalia Sofia (G4) - 5.0</span>
+        <span class="student-item">León Bujato Antonella (G4) - 5.0</span>
+    </li>
+    <li>
+        <h4>SOCIALES Y CIUDADANAS</h4>
+        <span class="student-item">Altamar Rodriguez Samantha Lucia (G1) - 5.0</span>
+        <span class="student-item">Quintero Camargo Paulina (G2) - 4.7</span>
+        <span class="student-item">Garizabalo Urbino Emmanuel David (G2) - 4.7</span>
+        <span class="student-item">Correa Salazar Ashley (G2) - 4.7</span>
+        <span class="student-item">Palacio Morales Heider Stick (G2) - 4.7</span>
+        <span class="student-item">Carranza Cotuas Valentina (G4) - 4.8</span>
+        <span class="student-item">Ortega Palacio Almelys (G4) - 4.4</span>
+        <span class="student-item">Blanco Giraldo Valentina (G3) - 4.2</span>
+        <span class="student-item">Hernández Peñaloza Mathias Andrés (G3) - 4.2</span>
+        <span class="student-item">Paez Palencia Zhariek Sofia (G3) - 4.2</span>
+    </li>
+    <li>
+        <h4>INGLÉS</h4>
+        <span class="student-item">Altamar Rodriguez Samantha Lucia (G1) - 5.0</span>
+        <span class="student-item">Aguilar Peñaranda Sara Aguilar (G1) - 5.0</span>
+        <span class="student-item">Escobar Barceló Jhoney Andrés (G1) - 5.0</span>
+        <span class="student-item">Samper Gutierrez Salome Sofia (G1) - 5.0</span>
+        <span class="student-item">Acosta Capataz Fabiana Sofia (G1) - 5.0</span>
+        <span class="student-item">Rico López Juan Pablo (G1) - 5.0</span>
+        <span class="student-item">Ramírez Buelvas Maylen Briseth (G5) - 5.0</span>
+        <span class="student-item">Quintero Camargo Paulina (G2) - 4.7</span>
+        <span class="student-item">Carrillo Meza Isaías Andrés (G2) - 4.7</span>
+        <span class="student-item">Garizabalo Urbino Emmanuel David (G2) - 4.7</span>
+    </li>
+</ul>
+
+<hr>
+
+<h2>RECOMENDACIONES ESTRATÉGICAS Y PLAN DE MEJORAMIENTO 2026</h2>
+
+<div class="recommendations">
+<p>Reconocemos y felicitamos a COL. HUELLAS DE LA ESPERANZA por la notable transición de un promedio BÁSICO a ALTO. Para consolidar estos resultados y alcanzar el Desempeño SUPERIOR, proponemos implementar una estructura curricular y evaluativa basada en el Diseño Centrado en Evidencias (EBD).</p>
+
+<h3>1. Transición hacia el Diseño Centrado en Evidencias (EBD)</h3>
+<p>El EBD asegura que la enseñanza y la evaluación se centren en las competencias que los estudiantes deben demostrar, garantizando la uniformidad en los logros.</p>
+<ol>
+    <li>
+        <strong>Definición de Competencias Clave y Rúbricas:</strong> Formalizar rúbricas para cada área, detallando los criterios que distinguen el nivel BÁSICO, ALTO y SUPERIOR. Esto es vital en <strong>Lectura Crítica</strong>, donde la evidencia de desempeño Superior debe ser la capacidad de evaluar y argumentar, no solo la identificación literal de información.
+    </li>
+    <li>
+        <strong>Estrategia para Inglés y Sociales (Alta Dispersión):</strong> Dada la alta desviación en INGLÉS (SD 0.72) y SOCIALES Y CIUDADANAS (SD 0.65), se requiere estandarizar los procesos pedagógicos. Para Inglés, esto implica el uso de material contextualizado y la evaluación continua de las cuatro habilidades (escucha, habla, lectura, escritura).
+    </li>
+    <li>
+        <strong>Ruptura del Techo en Matemáticas:</strong> El área de Matemáticas, aunque sólida, tuvo la menor mejora (+0.23). Se sugiere reorientar el enfoque de lo puramente procedimental (Aritmética/Geometría) hacia el desarrollo de competencias de <strong>Estadística y Resolución de Problemas</strong>, estimulando el razonamiento complejo necesario para el nivel SUPERIOR.
+    </li>
+</ol>
+
+<h3>2. Revisión y Actualización Curricular</h3>
+<p>Para asegurar una base sólida y una progresión lógica, se debe revisar la malla desde la primera infancia.</p>
+<ol>
+    <li>
+        <strong>Revisión Curricular en Transición:</strong> La malla curricular de Transición (Preescolar) debe ser revisada para garantizar que los estudiantes que acceden al Grado 1 posean las competencias fundamentales en pre-cálculo y pre-lectura, mitigando futuros vacíos.
+    </li>
+    <li>
+        <strong>Integración de Ciencias y CTS:</strong> Incorporar formalmente el componente de <strong>CIENCIA, TECNOLOGÍA Y SOCIEDAD (CTS)</strong> en la malla de Ciencias Naturales desde los primeros grados. Esto ayudará a mejorar los subcomponentes de Biología y Física, proporcionándoles una aplicación práctica y transversal.
+    </li>
+    <li>
+        <strong>Articulación Inter-Áreas:</strong> Fomentar la enseñanza basada en proyectos que unifique Lenguaje, Lectura Crítica y Ciencias Sociales, potenciando las habilidades de análisis, argumentación y comprensión del entorno social y ciudadano.
+    </li>
+</ol>
+
+<h3>3. Propuesta de Calendario de Evaluación para 2026</h3>
+<p>Para garantizar una intervención pedagógica continua y basada en datos, GRUPO EDUCATE COLOMBIA recomienda implementar cinco (5) pruebas de evaluación por competencias durante el año escolar 2026:</p>
+<table>
+    <thead>
+        <tr>
+            <th>Prueba</th>
+            <th>Propósito</th>
+            <th>Fecha Estimada</th>
+            <th>Acción Inmediata</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td><strong>Misión Cero (Diagnóstico)</strong></td><td>Identificar vacíos del año anterior (pre-saberes).</td><td>Febrero</td><td>Focalización de la primera unidad pedagógica.</td></tr>
+        <tr><td>Misión I</td><td>Evaluación del Periodo 1.</td><td>Abril</td><td>Planes de refuerzo P1.</td></tr>
+        <tr><td>Misión II</td><td>Evaluación del Periodo 2.</td><td>Junio</td><td>Ajuste de metodologías para el segundo semestre.</td></tr>
+        <tr><td>Misión III</td><td>Evaluación del Periodo 3.</td><td>Septiembre</td><td>Intervención individualizada a bajo desempeño.</td></tr>
+        <tr><td>Misión IV (Final)</td><td>Evaluación de logro anual (Sumativa).</td><td>Noviembre</td><td>Balance final e insumo para Misión Cero 2027.</td></tr>
+    </tbody>
+</table>
+
+<h3>4. Implementación del Bibliobanco Curricular</h3>
+<p>Se propone la dotación de un "Bibliobanco" (recursos físicos y digitales) cuyos materiales estén **estrictamente alineados** con las nuevas mallas curriculares y el enfoque EBD, asegurando que los recursos pedagógicos refuercen directamente las competencias evaluadas.</p>
+<p>El Bibliobanco debe enfocarse en:</p>
+<ul>
+    <li>Material que desafíe al estudiante a ir más allá de la lectura literal, promoviendo la <strong>Lectura Crítica</strong>.</li>
+    <li>Recursos para la enseñanza diferenciada en INGLÉS, adaptados a los distintos niveles de logro (A1, A2, B1).</li>
+    <li>Ejercicios prácticos en Matemáticas que enfaticen la aplicación de la <strong>Estadística</strong> y el razonamiento lógico.</li>
+</ul>
+
+</div>
+</div>
+
+<!-- INICIO DEL BLOQUE JAVASCRIPT PARA LOS GRÁFICOS -->
+<script>
+// =========================================================
+// DATOS INSTITUCIONALES PARA GRÁFICOS (Extraídos del análisis)
+// =========================================================
+const dataAlfaBeta = {
+    labels: ['Misión Alfa', 'Misión Beta'],
+    promedios: [3.27, 3.95]
+};
+
+const dataAreaComparison = {
+    areas: ['LENGUAJE', 'CIENCIAS NATURALES', 'MATEMÁTICAS', 'SOCIALES Y CIUDADANAS', 'INGLÉS'],
+    alfa: [3.40, 3.25, 3.78, 3.32, 2.78],
+    beta: [4.19, 3.97, 4.01, 3.97, 3.94]
+};
+
+const dataGradeComparison = {
+    grades: ['Grado 1', 'Grado 2', 'Grado 3', 'Grado 4', 'Grado 5'],
+    alfa: [3.45, 3.50, 2.99, 3.24, 3.06],
+    beta: [4.10, 4.11, 3.48, 3.80, 3.73]
+};
+
+const dataDeviation = {
+    areas: ['LENGUAJE', 'C. NATURALES', 'MATEMÁTICAS', 'SOCIALES', 'INGLÉS'],
+    media: [3.80, 3.61, 3.90, 3.65, 3.36],
+    sd: [0.60, 0.56, 0.48, 0.65, 0.72]
+};
+
+const dataStackedPerformance = {
+    areas: ['LENGUAJE', 'CIENCIAS NATURALES', 'MATEMÁTICAS', 'SOCIALES', 'INGLÉS'],
+    superior: [51.4, 22.9, 55.2, 43.8, 25.7],
+    alto: [45.7, 65.7, 36.2, 53.3, 58.1],
+    basico: [2.9, 11.4, 8.6, 2.9, 14.3],
+    bajo: [0.0, 0.0, 0.0, 0.0, 1.9]
+};
+
+
+// =========================================================
+// FUNCIONES DE DIBUJO CON CHART.JS
+// =========================================================
+
+// 1. Promedio General Institucional
+new Chart(document.getElementById('chart-promedio-general'), {
+    type: 'bar',
+    data: {
+        labels: dataAlfaBeta.labels,
+        datasets: [{
+            label: 'Promedio General',
+            data: dataAlfaBeta.promedios,
+            backgroundColor: ['#007bff', '#28a745'],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: { y: { beginAtZero: true, max: 5.0 } },
+        plugins: { title: { display: true, text: 'Promedio General Institucional (Alfa vs. Beta)' } }
+    }
+});
+
+// 2. Comparación de Promedio por Áreas
+new Chart(document.getElementById('chart-area-comparison'), {
+    type: 'bar',
+    data: {
+        labels: dataAreaComparison.areas,
+        datasets: [{
+            label: 'Misión Alfa',
+            data: dataAreaComparison.alfa,
+            backgroundColor: 'rgba(255, 193, 7, 0.8)'
+        }, {
+            label: 'Misión Beta',
+            data: dataAreaComparison.beta,
+            backgroundColor: 'rgba(0, 123, 255, 0.8)'
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: { y: { beginAtZero: true, max: 5.0 } },
+        plugins: { title: { display: true, text: 'Promedio de Áreas (Alfa vs. Beta)' } }
+    }
+});
+
+// 3. Rendimiento por Grados (Gráfico de Araña)
+new Chart(document.getElementById('chart-grade-comparison'), {
+    type: 'radar',
+    data: {
+        labels: dataGradeComparison.grades,
+        datasets: [{
+            label: 'Misión Alfa',
+            data: dataGradeComparison.alfa,
+            backgroundColor: 'rgba(0, 123, 255, 0.2)',
+            borderColor: '#007bff',
+            pointBackgroundColor: '#007bff'
+        }, {
+            label: 'Misión Beta',
+            data: dataGradeComparison.beta,
+            backgroundColor: 'rgba(40, 167, 69, 0.2)',
+            borderColor: '#28a745',
+            pointBackgroundColor: '#28a745'
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: { r: { min: 2.5, max: 4.5, pointLabels: { font: { size: 14 } } } },
+        plugins: { title: { display: true, text: 'Rendimiento Promedio por Grado (Alfa vs. Beta)' } }
+    }
+});
+
+
+// 4. Promedio de Áreas con Desviación Estándar (Usando barras y error bars simulados)
+new Chart(document.getElementById('chart-deviation'), {
+    type: 'bar',
+    data: {
+        labels: dataDeviation.areas,
+        datasets: [{
+            label: 'Media Institucional (µ)',
+            data: dataDeviation.media,
+            backgroundColor: '#ffc107',
+        }, {
+            label: 'Desviación Estándar (SD)',
+            data: dataDeviation.sd,
+            backgroundColor: 'rgba(0, 64, 133, 0.5)',
+            type: 'line',
+            yAxisID: 'y1' 
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: { beginAtZero: true, max: 5.0, title: { display: true, text: 'Promedio' } },
+            y1: { 
+                type: 'linear', 
+                display: true, 
+                position: 'right', 
+                grid: { drawOnChartArea: false },
+                title: { display: true, text: 'Desviación Estándar' }
+            }
+        },
+        plugins: { title: { display: true, text: 'Media Institucional y Desviación Estándar por Área' } }
+    }
+});
+
+
+// 5. Gráfico de Barras Apiladas: Porcentaje de Desempeño por Área (Orden ajustado: Bajo -> Básico -> Alto -> Superior)
+new Chart(document.getElementById('chart-stacked-performance'), {
+    type: 'bar',
+    data: {
+        labels: dataStackedPerformance.areas,
+        datasets: [{
+            label: 'BAJO (%)',
+            data: dataStackedPerformance.bajo,
+            backgroundColor: '#dc3545' /* Rojo */
+        }, {
+            label: 'BÁSICO (%)',
+            data: dataStackedPerformance.basico,
+            backgroundColor: '#007bff' /* Azul */
+        }, {
+            label: 'ALTO (%)',
+            data: dataStackedPerformance.alto,
+            backgroundColor: '#ffc107' /* Amarillo/Naranja */
+        }, {
+            label: 'Superior (%)',
+            data: dataStackedPerformance.superior,
+            backgroundColor: '#28a745' /* Verde */
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            x: { stacked: true },
+            y: { stacked: true, beginAtZero: true, max: 100, title: { display: true, text: 'Porcentaje de Estudiantes' } }
+        },
+        plugins: { title: { display: true, text: 'Porcentaje de Estudiantes por Nivel de Desempeño (Misión Beta)' } }
+    }
+});
+</script>
+
+</body>
+</html>
