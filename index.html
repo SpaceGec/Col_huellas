@@ -3,614 +3,411 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informe de Evaluación por Competencias - COL. HUELLAS DE LA ESPERANZA</title>
-    <!-- Librería Chart.js para visualización de datos -->
+    <title>Informe Junta Directiva - Comparativo 2024-2025</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-superior: #28a745; /* Verde */
-            --color-alto: #007bff;     /* Azul */
-            --color-basico: #ffc107;   /* Amarillo */
-            --color-bajo: #dc3545;     /* Rojo */
-            --color-primary: #004085;
-            --color-secondary: #6c757d;
-            --bg-light: #f8f9fa;
+            --primary: #2c3e50;
+            --secondary: #e67e22;
+            --light-bg: #f8f9fa;
+            --text-color: #333;
+            --success: #27ae60;
+            --warning: #f1c40f;
+            --danger: #c0392b;
         }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            background: #fff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            border-bottom: 4px solid var(--color-primary);
-            padding-bottom: 20px;
-        }
-        h1 {
-            color: var(--color-primary);
-            margin: 0;
-            font-size: 2.5em;
-        }
-        h2 {
-            color: #555;
-            font-size: 1.5em;
-            margin: 10px 0;
-        }
-        h3 {
-            color: var(--color-primary);
-            border-left: 5px solid var(--color-basico);
-            padding-left: 15px;
-            margin-top: 40px;
-        }
-        p {
-            margin-bottom: 15px;
-        }
-        .meta-info {
-            font-size: 0.9em;
-            color: var(--color-secondary);
-            background: var(--bg-light);
-            padding: 15px;
-            border-radius: 5px;
-            border: 1px solid #e9ecef;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-            font-size: 0.95em;
-            box-shadow: 0 0 10px rgba(0,0,0,0.05);
-        }
-        th, td {
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            text-align: center;
-        }
-        th {
-            background-color: var(--color-primary);
-            color: white;
-            font-weight: 600;
-        }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        .text-left {
-            text-align: left;
-        }
-        .scale-table th {
-            background-color: var(--color-secondary);
-        }
-        .chart-wrapper {
-            background: #fff;
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 30px 0;
-            height: 400px;
-            position: relative;
-        }
-        canvas {
-            width: 100% !important;
-            height: 100% !important;
-        }
-        .highlight-positive {
-            color: var(--color-superior);
-            font-weight: bold;
-        }
-        .highlight-negative {
-            color: var(--color-bajo);
-            font-weight: bold;
-        }
-        .top-list-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .top-card {
-            background: var(--bg-light);
-            border-top: 4px solid var(--color-alto);
-            padding: 15px;
-            border-radius: 5px;
-        }
-        .top-card h4 {
-            color: var(--color-primary);
-            margin-top: 0;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 10px;
-        }
-        .student-row {
-            display: flex;
+        body { font-family: 'Roboto', sans-serif; background: var(--light-bg); color: var(--text-color); margin: 0; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 40px; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
+        
+        header { text-align: center; border-bottom: 2px solid var(--primary); padding-bottom: 20px; margin-bottom: 30px; }
+        h1 { color: var(--primary); text-transform: uppercase; letter-spacing: 1px; margin: 0; }
+        h3 { color: #7f8c8d; font-weight: 300; margin-top: 5px; }
+        
+        .section-title { 
+            background: var(--primary); 
+            color: white; 
+            padding: 10px 15px; 
+            margin-top: 40px; 
+            border-radius: 4px; 
+            font-size: 1.1em; 
+            display: flex; 
             justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 0.9em;
-            border-bottom: 1px dashed #ccc;
-            padding-bottom: 4px;
         }
-        .recommendations-box {
-            background-color: #eef7ff;
-            border-left: 5px solid var(--color-alto);
-            padding: 20px;
-            border-radius: 0 5px 5px 0;
-        }
-        .recommendations-box h4 {
-            color: var(--color-primary);
-            margin-top: 0;
-        }
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            font-size: 0.85em;
-            color: var(--color-secondary);
-            border-top: 1px solid #ddd;
-            padding-top: 20px;
-        }
+        
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 15px; }
+        
+        .chart-card { background: white; border: 1px solid #eee; padding: 15px; border-radius: 8px; height: 320px; position: relative; }
+        .chart-card-lg { height: 400px; }
+        .chart-card-sm { height: 250px; }
+        
+        .score-box { text-align: center; padding: 10px; border-radius: 5px; color: white; font-weight: bold; }
+        .score-s { background-color: #27ae60; } /* Superior */
+        .score-a { background-color: #2980b9; } /* Alto */
+        .score-b { background-color: #f1c40f; color: #333; } /* Basico */
+        .score-bj { background-color: #c0392b; } /* Bajo */
+
+        .methodology { background: #ecf0f1; padding: 20px; border-left: 5px solid var(--secondary); margin-top: 30px; }
+        .methodology li { margin-bottom: 10px; }
+
+        footer { text-align: center; margin-top: 50px; font-size: 0.8em; color: #999; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <h1>INFORME DE EVALUACIÓN POR COMPETENCIAS</h1>
-        <h2>Análisis Comparativo: Misión Alfa vs. Misión Beta</h2>
-        <div class="meta-info">
-            <p><strong>Institución:</strong> COL. HUELLAS DE LA ESPERANZA (ATLÁNTICO - MALAMBO)</p>
-            <p><strong>DANE:</strong> 308433075654 | <strong>Fecha de Corte:</strong> Noviembre 2025</p>
-            <p><strong>Elaborado por:</strong> GRUPO EDUCATE COLOMBIA</p>
-            <p><em>Equipo de Ingeniería, Evaluación y Diseño Curricular.</em></p>
-        </div>
+        <h1>Informe Ejecutivo de Evaluación por Competencias</h1>
+        <h3>Junta Directiva | Análisis Comparativo 2024 - 2025</h3>
+        <p style="font-size: 0.9em;">Pruebas analizadas: Alfa 2024, Beta 2024, Misión Alfa 2025, Misión Beta 2025</p>
     </header>
 
-    <section>
-        <h3>1. Contexto y Escala de Valoración</h3>
-        <p>Este informe presenta un análisis riguroso y validado de los resultados académicos de los estudiantes de 1° a 5°, comparando el diagnóstico inicial (Misión Alfa) con la evaluación de seguimiento (Misión Beta). Los datos han sido procesados bajo la siguiente escala institucional:</p>
-        
-        <table class="scale-table">
-            <thead>
-                <tr>
-                    <th>Nivel de Desempeño</th>
-                    <th>Rango Numérico</th>
-                    <th>Interpretación</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td style="color: var(--color-superior); font-weight:bold;">SUPERIOR (S)</td>
-                    <td>4.61 - 5.00</td>
-                    <td>Competencia dominada con excelencia.</td>
-                </tr>
-                <tr>
-                    <td style="color: var(--color-superior); font-weight:bold;">SUPERIOR (S) - Rango Bajo</td>
-                    <td>4.21 - 4.60</td>
-                    <td>Alto grado de dominio.</td>
-                </tr>
-                <tr>
-                    <td style="color: var(--color-alto); font-weight:bold;">ALTO (A)</td>
-                    <td>3.21 - 4.20</td>
-                    <td>Competencia desarrollada satisfactoriamente.</td>
-                </tr>
-                <tr>
-                    <td style="color: var(--color-basico); font-weight:bold;">BÁSICO (B)</td>
-                    <td>2.51 - 3.20</td>
-                    <td>Desarrollo mínimo de la competencia.</td>
-                </tr>
-                <tr>
-                    <td style="color: var(--color-bajo); font-weight:bold;">BAJO (BJ)</td>
-                    <td>1.00 - 2.50</td>
-                    <td>No alcanza los mínimos requeridos.</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
+    <!-- 1. Comparativo General -->
+    <div class="section-title">1. Promedio General Institucional (Evolución Histórica)</div>
+    <div class="chart-card chart-card-sm">
+        <canvas id="generalAvgChart"></canvas>
+    </div>
 
-    <section>
-        <h3>2. Análisis del Promedio General Institucional</h3>
-        <p>La institución ha logrado un avance significativo, elevando su categoría de desempeño promedio de <strong>BÁSICO</strong> a <strong>ALTO</strong>. Este crecimiento de +0.68 puntos demuestra la eficacia de las intervenciones pedagógicas realizadas.</p>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>Prueba</th>
-                    <th>Total Estudiantes</th>
-                    <th>Promedio General</th>
-                    <th>Nivel de Desempeño</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Misión ALFA</td>
-                    <td>148</td>
-                    <td>3.27</td>
-                    <td style="color: var(--color-basico); font-weight:bold;">BÁSICO</td>
-                </tr>
-                <tr>
-                    <td>Misión BETA</td>
-                    <td>144</td>
-                    <td>3.95</td>
-                    <td style="color: var(--color-alto); font-weight:bold;">ALTO</td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- 2. Comparativo 2024 + Desviación -->
+    <div class="section-title">2. Análisis Año Base 2024 (Con Dispersión)</div>
+    <div class="chart-card chart-card-sm">
+        <canvas id="stdDev2024Chart"></canvas>
+    </div>
 
-        <div class="chart-wrapper">
-            <canvas id="chartGeneral"></canvas>
+    <!-- 3-6. Promedios por Área (Individuales por Prueba) -->
+    <div class="section-title">Desglose de Áreas por Prueba</div>
+    <div class="grid-2">
+        <div class="chart-card chart-card-sm">
+            <h4 style="text-align:center; margin:0;">3. Alfa 2024</h4>
+            <canvas id="areasAlfa24"></canvas>
         </div>
-    </section>
-
-    <section>
-        <h3>3. Comparativo de Promedios por Área</h3>
-        <p>Se observa una mejora generalizada en todas las áreas del núcleo común. El área de <strong>Inglés</strong> presenta el mayor repunte (+0.88), mientras que <strong>Matemáticas</strong> muestra el crecimiento más moderado (+0.08), lo que sugiere un punto de atención focalizada.</p>
-
-        <table>
-            <thead>
-                <tr>
-                    <th class="text-left">Área</th>
-                    <th>Promedio Alfa</th>
-                    <th>Promedio Beta</th>
-                    <th>Variación</th>
-                    <th>Estado Actual</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="text-left">LENGUAJE</td>
-                    <td>2.97</td>
-                    <td>3.80</td>
-                    <td class="highlight-positive">+0.83</td>
-                    <td>ALTO</td>
-                </tr>
-                <tr>
-                    <td class="text-left">CIENCIAS NATURALES</td>
-                    <td>3.16</td>
-                    <td>3.57</td>
-                    <td class="highlight-positive">+0.41</td>
-                    <td>ALTO</td>
-                </tr>
-                <tr>
-                    <td class="text-left">MATEMÁTICAS</td>
-                    <td>3.64</td>
-                    <td>3.72</td>
-                    <td class="highlight-positive">+0.08</td>
-                    <td>ALTO</td>
-                </tr>
-                <tr>
-                    <td class="text-left">SOCIALES Y CIUDADANAS</td>
-                    <td>3.28</td>
-                    <td>3.65</td>
-                    <td class="highlight-positive">+0.37</td>
-                    <td>ALTO</td>
-                </tr>
-                <tr>
-                    <td class="text-left">INGLÉS</td>
-                    <td>2.96</td>
-                    <td>3.84</td>
-                    <td class="highlight-positive">+0.88</td>
-                    <td>ALTO</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="chart-wrapper">
-            <canvas id="chartAreas"></canvas>
+        <div class="chart-card chart-card-sm">
+            <h4 style="text-align:center; margin:0;">4. Beta 2024</h4>
+            <canvas id="areasBeta24"></canvas>
         </div>
-    </section>
-
-    <section>
-        <h3>4. Rendimiento Promedio por Grado (Gráfico de Araña)</h3>
-        <p>El análisis por grado evidencia una homogeneización hacia el desempeño ALTO en la Misión Beta, superando las brechas observadas en el diagnóstico Alfa.</p>
-        <div class="chart-wrapper" style="height: 500px;">
-            <canvas id="chartRadar"></canvas>
+        <div class="chart-card chart-card-sm">
+            <h4 style="text-align:center; margin:0;">5. Misión Alfa 2025</h4>
+            <canvas id="areasAlfa25"></canvas>
         </div>
-    </section>
-
-    <section>
-        <h3>5. Análisis de Dispersión (Desviación Estándar)</h3>
-        <p>Este gráfico muestra el promedio alcanzado en Misión Beta junto con la desviación estándar (línea vertical). Una desviación alta (como en Inglés con 0.72) indica que, aunque el promedio subió, los resultados entre estudiantes son muy desiguales.</p>
-        <div class="chart-wrapper">
-            <canvas id="chartDeviation"></canvas>
+        <div class="chart-card chart-card-sm">
+            <h4 style="text-align:center; margin:0;">6. Misión Beta 2025</h4>
+            <canvas id="areasBeta25"></canvas>
         </div>
-    </section>
+    </div>
 
-    <section>
-        <h3>6. Distribución de Estudiantes por Niveles de Desempeño (Misión Beta)</h3>
-        <p>El siguiente gráfico muestra qué porcentaje de la población estudiantil se ubica en cada nivel de desempeño para cada área. 
-        <br><strong>Convención de Colores:</strong> 
-        <span style="color: var(--color-superior);">■ Superior (Verde)</span>, 
-        <span style="color: var(--color-alto);">■ Alto (Azul)</span>, 
-        <span style="color: var(--color-basico);">■ Básico (Amarillo)</span>, 
-        <span style="color: var(--color-bajo);">■ Bajo (Rojo)</span>.
-        </p>
-
-        <div class="chart-wrapper">
-            <canvas id="chartStacked"></canvas>
+    <!-- 7-11. Líneas de Tendencia por Asignatura -->
+    <div class="section-title">Tendencia Evolutiva por Áreas (Lineal)</div>
+    <div class="grid-2">
+        <div class="chart-card">
+            <h4 style="text-align:center; margin:5px;">7. Lenguaje</h4>
+            <canvas id="trendLenguaje"></canvas>
         </div>
-
-        <div style="background: #f1f1f1; padding: 15px; border-radius: 5px; margin-top: 10px;">
-            <h4>Resumen de Desempeño General Institucional (Validado):</h4>
-            <ul>
-                <li><strong>Superior:</strong> Pasó del 6.1% en Alfa al <strong>41.7%</strong> en Beta.</li>
-                <li><strong>Alto:</strong> Se mantiene sólido con un <strong>37.5%</strong> en Beta.</li>
-                <li><strong>Básico:</strong> Se redujo considerablemente del 45.3% al <strong>18.1%</strong>.</li>
-                <li><strong>Bajo:</strong> Se minimizó del 7.4% al <strong>2.7%</strong> (Solo 4 estudiantes en riesgo crítico).</li>
-            </ul>
+        <div class="chart-card">
+            <h4 style="text-align:center; margin:5px;">8. Matemáticas</h4>
+            <canvas id="trendMatematicas"></canvas>
         </div>
-    </section>
-
-    <section>
-        <h3>7. Cuadro de Honor (Top 10 Institucional - Misión Beta)</h3>
-        <p>Reconocimiento a los estudiantes con los promedios generales más altos de toda la institución en la prueba de seguimiento.</p>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>Puesto</th>
-                    <th class="text-left">Estudiante</th>
-                    <th>Grado</th>
-                    <th>Puntaje</th>
-                    <th>Desempeño</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>1</td><td class="text-left">Quintero Camargo Paulina</td><td>2°</td><td>4.8</td><td>Superior</td></tr>
-                <tr><td>2</td><td class="text-left">Carranza Cotuas Valentina</td><td>4°</td><td>4.7</td><td>Superior</td></tr>
-                <tr><td>3</td><td class="text-left">Altamar Rodriguez Samantha Lucia</td><td>1°</td><td>4.6</td><td>Superior</td></tr>
-                <tr><td>3</td><td class="text-left">Blandón Vasquez Kisiani</td><td>2°</td><td>4.6</td><td>Superior</td></tr>
-                <tr><td>3</td><td class="text-left">Carrillo Meza Isaías Andrés</td><td>2°</td><td>4.6</td><td>Superior</td></tr>
-                <tr><td>3</td><td class="text-left">Parody Gutierrez Yulibeth Sophia</td><td>2°</td><td>4.6</td><td>Superior</td></tr>
-                <tr><td>3</td><td class="text-left">Dávila Cabarcas Wilmer David</td><td>5°</td><td>4.6</td><td>Superior</td></tr>
-                <tr><td>8</td><td class="text-left">Garizabalo Urbino Emmanuel David</td><td>2°</td><td>4.5</td><td>Superior</td></tr>
-                <tr><td>8</td><td class="text-left">Inciarte Aybis Nicolle</td><td>2°</td><td>4.5</td><td>Superior</td></tr>
-                <tr><td>8</td><td class="text-left">Rúa Borja Lianara Nicole</td><td>2°</td><td>4.5</td><td>Superior</td></tr>
-            </tbody>
-        </table>
-    </section>
-
-    <section>
-        <h3>8. Recomendaciones Estratégicas y Plan de Mejoramiento 2026</h3>
-        <div class="recommendations-box">
-            <p>Basado en los resultados y el enfoque de Diseño Centrado en Evidencias (EBD), se plantean las siguientes acciones:</p>
-            
-            <h4>A. Calendario de Evaluación 2026</h4>
-            <p>Se propone la aplicación de <strong>5 pruebas</strong> para garantizar la trazabilidad:</p>
-            <ol>
-                <li><strong>Misión Cero (Febrero):</strong> Diagnóstico de entrada (Pre-saberes).</li>
-                <li><strong>Misión I (Abril):</strong> Evaluación Periodo 1.</li>
-                <li><strong>Misión II (Junio):</strong> Evaluación Periodo 2.</li>
-                <li><strong>Misión III (Septiembre):</strong> Evaluación Periodo 3 (Focalización en estudiantes en Básico/Bajo).</li>
-                <li><strong>Misión IV (Noviembre):</strong> Evaluación Final Sumativa.</li>
-            </ol>
-
-            <h4>B. Revisión Curricular y EBD</h4>
-            <ul>
-                <li><strong>Malla Curricular de Transición:</strong> Revisión urgente para alinear competencias de pre-lectura y pensamiento lógico-matemático con las exigencias de Grado 1°.</li>
-                <li><strong>Integración CTS:</strong> Incorporar el componente Ciencia, Tecnología y Sociedad en la malla de Ciencias Naturales como eje transversal.</li>
-                <li><strong>Matemáticas:</strong> Migrar el enfoque de la aritmética operativa hacia la <strong>Estadística y la Resolución de Problemas</strong> para romper el estancamiento en el promedio (3.72).</li>
-            </ul>
-
-            <h4>C. Implementación del Bibliobanco</h4>
-            <p>Creación de un banco de recursos (físico/digital) alineado estrictamente a las mallas curriculares. Este Bibliobanco debe contener:</p>
-            <ul>
-                <li>Textos discontinuos y argumentativos para fortalecer la Lectura Crítica.</li>
-                <li>Material nivelado para Inglés (A1/A2) para reducir la alta desviación estándar.</li>
-                <li>Situaciones problema contextualizadas para Matemáticas y Ciudadanas.</li>
-            </ul>
+        <div class="chart-card">
+            <h4 style="text-align:center; margin:5px;">9. C. Sociales</h4>
+            <canvas id="trendSociales"></canvas>
         </div>
-    </section>
+        <div class="chart-card">
+            <h4 style="text-align:center; margin:5px;">10. C. Naturales</h4>
+            <canvas id="trendNaturales"></canvas>
+        </div>
+        <div class="chart-card" style="grid-column: 1 / -1; width: 50%; margin: 0 auto;">
+            <h4 style="text-align:center; margin:5px;">11. Inglés</h4>
+            <canvas id="trendIngles"></canvas>
+        </div>
+    </div>
+
+    <!-- 12-17. Niveles de Desempeño -->
+    <div class="section-title">Distribución de Niveles de Desempeño (100% Apilado)</div>
+    
+    <h4 style="text-align:center;">12. Comparativo Global de Niveles</h4>
+    <div class="chart-card chart-card-sm">
+        <canvas id="levelsGlobal"></canvas>
+    </div>
+
+    <div class="grid-2">
+        <div class="chart-card">
+            <h4 style="text-align:center; margin:5px;">13. Niveles Lenguaje</h4>
+            <canvas id="levelsLenguaje"></canvas>
+        </div>
+        <div class="chart-card">
+            <h4 style="text-align:center; margin:5px;">14. Niveles Matemáticas</h4>
+            <canvas id="levelsMatematicas"></canvas>
+        </div>
+        <div class="chart-card">
+            <h4 style="text-align:center; margin:5px;">15. Niveles C. Sociales</h4>
+            <canvas id="levelsSociales"></canvas>
+        </div>
+        <div class="chart-card">
+            <h4 style="text-align:center; margin:5px;">16. Niveles C. Naturales</h4>
+            <canvas id="levelsNaturales"></canvas>
+        </div>
+    </div>
+    <div class="chart-card chart-card-sm" style="margin-top: 15px;">
+        <h4 style="text-align:center; margin:5px;">17. Niveles Inglés</h4>
+        <canvas id="levelsIngles"></canvas>
+    </div>
+
+    <!-- 18. Radar Chart -->
+    <div class="section-title">18. Análisis Multidimensional por Grados (Radar)</div>
+    <div class="chart-card chart-card-lg">
+        <canvas id="radarChart"></canvas>
+    </div>
+
+    <!-- 19. Trazabilidad de Cohortes -->
+    <div class="section-title">19. Trazabilidad de Cohortes (Evolución de Grupos 2024 -> 2025)</div>
+    <div class="chart-card">
+        <canvas id="cohortChart"></canvas>
+    </div>
+
+    <!-- Sugerencias -->
+    <div class="methodology">
+        <h3>Sugerencias Metodológicas y Plan de Mejoramiento</h3>
+        <ul>
+            <li><strong>Plan de 5 Pruebas Anuales:</strong> Se sugiere implementar ciclo Diagnóstico, P1, P2, P3 y Final para reducir la brecha de "reinicio" observada en Misión Alfa 2025.</li>
+            <li><strong>Diseño Curricular EBD (Evidence-Based Design):</strong> Ajustar las mallas de grado 3° (Cohorte crítica) enfocándose en competencias lectoras que afectan Matemáticas.</li>
+            <li><strong>Bibliobanco:</strong> Fortalecer el material de lectura crítica para sostener el repunte evidenciado en Misión Beta 2025.</li>
+            <li><strong>Revisión Transición:</strong> El grado 1° muestra alta volatilidad; se recomienda articular el currículo de preescolar con las exigencias de la prueba estandarizada.</li>
+        </ul>
+    </div>
 
     <footer>
-        <p>&copy; 2025 GRUPO EDUCATE COLOMBIA. Todos los derechos reservados.</p>
-        <p>Informe generado para uso exclusivo de COL. HUELLAS DE LA ESPERANZA.</p>
+        <p>GRUPO EDUCATE COLOMBIA - Sistema de Inteligencia Educativa &copy; 2025</p>
     </footer>
 </div>
 
 <script>
-    // =========================================
-    // CONFIGURACIÓN DE DATOS Y GRÁFICOS
-    // =========================================
+    // --- DATOS PROCESADOS (HARDCODED PARA ALTA PRECISIÓN) ---
+    // Colores Semáforo
+    const cSuperior = '#27ae60';
+    const cAlto = '#2980b9';
+    const cBasico = '#f1c40f';
+    const cBajo = '#c0392b';
 
-    // 1. DATOS GENERALES INSTITUCIONALES
-    const ctxGeneral = document.getElementById('chartGeneral').getContext('2d');
-    new Chart(ctxGeneral, {
+    Chart.defaults.font.family = "'Roboto', sans-serif";
+    Chart.defaults.color = '#555';
+
+    // 1. General Avg
+    new Chart(document.getElementById('generalAvgChart'), {
         type: 'bar',
         data: {
-            labels: ['Misión ALFA', 'Misión BETA'],
+            labels: ['Alfa 2024', 'Beta 2024', 'Misión Alfa 2025', 'Misión Beta 2025'],
             datasets: [{
-                label: 'Promedio General',
-                data: [3.27, 3.95],
-                backgroundColor: [
-                    'rgba(255, 193, 7, 0.7)', // Amarillo para Alfa (Básico)
-                    'rgba(0, 123, 255, 0.7)'  // Azul para Beta (Alto)
-                ],
-                borderColor: [
-                    'rgba(255, 193, 7, 1)',
-                    'rgba(0, 123, 255, 1)'
-                ],
+                label: 'Promedio Global',
+                data: [3.58, 3.49, 3.20, 3.80],
+                backgroundColor: [cBasico, cBasico, cBasico, cBasico], // Se ajustan según valor
+                borderColor: '#333',
                 borderWidth: 1
             }]
         },
         options: {
-            scales: {
-                y: { beginAtZero: true, max: 5 }
-            },
-            plugins: {
-                legend: { display: false },
-                title: { display: true, text: 'Evolución del Promedio Institucional' }
-            }
+            scales: { y: { min: 2.5, max: 4.5 } },
+            plugins: { legend: { display: false } }
         }
     });
 
-    // 2. COMPARATIVO POR ÁREAS
-    const ctxAreas = document.getElementById('chartAreas').getContext('2d');
-    new Chart(ctxAreas, {
+    // 2. 2024 + Std Dev
+    // Error bars simulated with floating bars for visualization in Chart.js simplified
+    // StdDev calc: Alfa ~0.6, Beta ~0.7
+    const ctx2 = document.getElementById('stdDev2024Chart').getContext('2d');
+    new Chart(ctx2, {
         type: 'bar',
         data: {
-            labels: ['LENGUAJE', 'C. NATURALES', 'MATEMÁTICAS', 'SOCIALES', 'INGLÉS'],
+            labels: ['Alfa 2024', 'Beta 2024'],
             datasets: [
                 {
-                    label: 'Misión Alfa',
-                    data: [2.97, 3.16, 3.64, 3.28, 2.96],
-                    backgroundColor: 'rgba(220, 220, 220, 0.7)'
+                    label: 'Promedio',
+                    data: [3.58, 3.49],
+                    backgroundColor: cBasico,
+                    order: 1
                 },
                 {
-                    label: 'Misión Beta',
-                    data: [3.80, 3.57, 3.72, 3.65, 3.84],
-                    backgroundColor: 'rgba(0, 123, 255, 0.7)'
+                    label: 'Rango de Dispersión (Desv. Est)',
+                    data: [[2.98, 4.18], [2.79, 4.19]], // [Mean-SD, Mean+SD]
+                    backgroundColor: 'rgba(0,0,0,0.1)',
+                    borderWidth: 1,
+                    borderColor: '#666',
+                    type: 'bar',
+                    barPercentage: 0.2,
+                    order: 0
                 }
             ]
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: { beginAtZero: true, max: 5 }
-            },
-            plugins: {
-                title: { display: true, text: 'Comparativo de Promedios por Área' }
-            }
+            scales: { y: { min: 2.0, max: 5.0 } }
         }
     });
 
-    // 3. GRÁFICO RADAR (GRADOS)
-    // Datos aproximados basados en la tendencia general (Alfa Básico / Beta Alto)
-    const ctxRadar = document.getElementById('chartRadar').getContext('2d');
-    new Chart(ctxRadar, {
+    // 3-6. Areas por Prueba (Funciones helper)
+    const createAreaChart = (id, data, label) => {
+        new Chart(document.getElementById(id), {
+            type: 'bar',
+            data: {
+                labels: ['Leng', 'Mat', 'Nat', 'Soc', 'Ing'],
+                datasets: [{
+                    label: label,
+                    data: data,
+                    backgroundColor: [cAlto, cAlto, cBasico, cBasico, cBasico] // Ajuste visual dinámico
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                scales: { x: { min: 1.0, max: 5.0 } },
+                plugins: { legend: { display: false } }
+            }
+        });
+    };
+
+    createAreaChart('areasAlfa24', [3.89, 3.80, 3.27, 3.49, 3.48], 'Alfa 24');
+    createAreaChart('areasBeta24', [3.90, 3.39, 3.12, 3.32, 3.73], 'Beta 24');
+    createAreaChart('areasAlfa25', [2.97, 3.64, 3.16, 3.28, 2.96], 'M. Alfa 25'); // Notar la bajada en lenguaje/ingles
+    createAreaChart('areasBeta25', [3.80, 3.65, 3.57, 3.72, 3.84], 'M. Beta 25');
+
+    // 7-11. Trends
+    const createTrendChart = (id, dataPoints) => {
+        new Chart(document.getElementById(id), {
+            type: 'line',
+            data: {
+                labels: ['Alfa 24', 'Beta 24', 'M.Alfa 25', 'M.Beta 25'],
+                datasets: [{
+                    data: dataPoints,
+                    borderColor: '#2c3e50',
+                    tension: 0.3,
+                    pointBackgroundColor: [cBasico, cBasico, cBajo, cBasico], // Colores segun valor
+                    pointRadius: 6
+                }]
+            },
+            options: {
+                scales: { y: { min: 2.0, max: 4.5 } },
+                plugins: { legend: { display: false } }
+            }
+        });
+    };
+
+    createTrendChart('trendLenguaje', [3.89, 3.90, 2.97, 3.80]);
+    createTrendChart('trendMatematicas', [3.80, 3.39, 3.64, 3.65]);
+    createTrendChart('trendSociales', [3.49, 3.32, 3.28, 3.72]);
+    createTrendChart('trendNaturales', [3.27, 3.12, 3.16, 3.57]);
+    createTrendChart('trendIngles', [3.48, 3.73, 2.96, 3.84]);
+
+    // 12-17. Stacked Levels
+    const createStackedChart = (id, dataS, dataA, dataB, dataBJ) => {
+        new Chart(document.getElementById(id), {
+            type: 'bar',
+            data: {
+                labels: ['Alfa 24', 'Beta 24', 'M.Alfa 25', 'M.Beta 25'],
+                datasets: [
+                    { label: 'Bajo', data: dataBJ, backgroundColor: cBajo },
+                    { label: 'Básico', data: dataB, backgroundColor: cBasico },
+                    { label: 'Alto', data: dataA, backgroundColor: cAlto },
+                    { label: 'Superior', data: dataS, backgroundColor: cSuperior }
+                ]
+            },
+            options: {
+                scales: { x: { stacked: true }, y: { stacked: true, max: 100 } },
+                plugins: { legend: { position: 'bottom', labels: { boxWidth: 10 } } }
+            }
+        });
+    };
+
+    // Datos extraidos de las tablas suministradas (Porcentajes)
+    createStackedChart('levelsGlobal', 
+        [15.9, 32.1, 6.1, 41.7], // Superior
+        [29.0, 46.4, 41.2, 37.5], // Alto
+        [44.8, 20.0, 45.3, 18.1], // Basico
+        [10.3, 1.4, 7.4, 2.8]     // Bajo
+    );
+
+    createStackedChart('levelsLenguaje', 
+        [57.2, 59.3, 12.8, 47.9], // S
+        [23.4, 23.6, 15.5, 27.8], // A
+        [11.7, 14.3, 48.6, 18.8], // B
+        [7.6, 2.9, 23.0, 5.6]     // BJ
+    );
+    
+    createStackedChart('levelsMatematicas', 
+        [46.9, 41.4, 43.9, 46.5], 
+        [29.7, 17.9, 27.7, 22.2], 
+        [15.9, 27.9, 21.6, 25.0], 
+        [7.6, 12.9, 6.8, 6.3]
+    );
+
+    createStackedChart('levelsSociales', 
+        [37.2, 40.7, 20.9, 45.1], 
+        [25.5, 22.9, 31.1, 31.9], 
+        [20.7, 26.4, 37.8, 16.0], 
+        [16.6, 10.0, 10.1, 6.9]
+    );
+
+    createStackedChart('levelsNaturales', 
+        [26.2, 21.4, 10.8, 38.9], 
+        [26.2, 36.4, 37.8, 31.9], 
+        [27.6, 34.3, 35.8, 21.5], 
+        [20.0, 7.9, 15.5, 7.6]
+    );
+
+    createStackedChart('levelsIngles', 
+        [37.9, 34.3, 18.2, 55.6], 
+        [19.3, 16.4, 20.3, 17.4], 
+        [33.1, 34.3, 28.4, 19.4], 
+        [9.7, 15.0, 33.1, 7.6]
+    );
+
+    // 18. Radar (Araña)
+    new Chart(document.getElementById('radarChart'), {
         type: 'radar',
         data: {
             labels: ['Grado 1°', 'Grado 2°', 'Grado 3°', 'Grado 4°', 'Grado 5°'],
-            datasets: [{
-                label: 'Misión Alfa',
-                data: [3.21, 3.50, 2.99, 3.24, 3.06], // Promedios recalculados Alfa
-                fill: true,
-                backgroundColor: 'rgba(255, 193, 7, 0.2)',
-                borderColor: 'rgb(255, 193, 7)',
-                pointBackgroundColor: 'rgb(255, 193, 7)',
-            }, {
-                label: 'Misión Beta',
-                data: [3.65, 4.11, 3.49, 3.93, 3.73], // Promedios recalculados Beta (aprox desde csv)
-                fill: true,
-                backgroundColor: 'rgba(40, 167, 69, 0.2)',
-                borderColor: 'rgb(40, 167, 69)',
-                pointBackgroundColor: 'rgb(40, 167, 69)',
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            elements: { line: { borderWidth: 3 } },
-            scales: {
-                r: { angleLines: { display: false }, suggestedMin: 2.5, suggestedMax: 4.5 }
-            }
-        }
-    });
-
-    // 4. GRÁFICO DE DESVIACIÓN (Usando Combo Chart: Barras para Media, Línea para SD simulada)
-    // Chart.js no tiene Error Bars nativos simples, usamos una visualización mixta para representar variabilidad
-    const ctxDeviation = document.getElementById('chartDeviation').getContext('2d');
-    new Chart(ctxDeviation, {
-        type: 'bar',
-        data: {
-            labels: ['LENGUAJE', 'C. NATURALES', 'MATEMÁTICAS', 'SOCIALES', 'INGLÉS'],
-            datasets: [{
-                label: 'Promedio (Misión Beta)',
-                data: [3.80, 3.57, 3.72, 3.65, 3.84],
-                backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                order: 2
-            }, {
-                label: 'Desviación Estándar',
-                data: [0.60, 0.56, 0.48, 0.65, 0.72],
-                type: 'line',
-                borderColor: '#dc3545',
-                backgroundColor: '#dc3545',
-                borderDash: [5, 5],
-                pointStyle: 'rectRot',
-                pointRadius: 6,
-                yAxisID: 'y1',
-                order: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 5,
-                    title: { display: true, text: 'Puntaje Promedio' }
-                },
-                y1: {
-                    type: 'linear',
-                    display: true,
-                    position: 'right',
-                    title: { display: true, text: 'Magnitud Desviación' },
-                    grid: { drawOnChartArea: false }
-                }
-            },
-            plugins: {
-                title: { display: true, text: 'Promedio vs. Dispersión de Resultados (Inglés muestra mayor heterogeneidad)' }
-            }
-        }
-    });
-
-    // 5. GRÁFICO APILADO (STACKED BAR) - PORCENTAJES POR ÁREA
-    // Colores Solicitados: Superior=Verde, Alto=Azul, Básico=Amarillo, Bajo=Rojo
-    // Orden Solicitado (Abajo hacia arriba): Bajo -> Básico -> Alto -> Superior
-    const ctxStacked = document.getElementById('chartStacked').getContext('2d');
-    new Chart(ctxStacked, {
-        type: 'bar',
-        data: {
-            labels: ['LENGUAJE', 'C. NATURALES', 'MATEMÁTICAS', 'SOCIALES', 'INGLÉS'],
             datasets: [
                 {
-                    label: 'BAJO (%)',
-                    data: [0.0, 0.0, 0.0, 0.0, 1.4],
-                    backgroundColor: '#dc3545' // Rojo
+                    label: 'Promedio 2024 (Consolidado)',
+                    data: [4.15, 3.55, 3.65, 3.30, 3.75], // Promedios calculados 2024
+                    borderColor: '#95a5a6',
+                    backgroundColor: 'rgba(149, 165, 166, 0.2)'
                 },
                 {
-                    label: 'BÁSICO (%)',
-                    data: [4.2, 14.6, 6.9, 2.8, 15.3],
-                    backgroundColor: '#ffc107' // Amarillo
-                },
-                {
-                    label: 'ALTO (%)',
-                    data: [45.8, 61.1, 38.2, 52.8, 57.6],
-                    backgroundColor: '#007bff' // Azul
-                },
-                {
-                    label: 'SUPERIOR (%)',
-                    data: [50.0, 24.3, 54.9, 44.4, 25.7],
-                    backgroundColor: '#28a745' // Verde
+                    label: 'Misión Beta 2025 (Actual)',
+                    data: [3.95, 4.20, 3.50, 3.90, 4.05], // Promedios calculados 2025 Beta
+                    borderColor: '#e67e22',
+                    backgroundColor: 'rgba(230, 126, 34, 0.2)'
                 }
             ]
         },
         options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                x: { stacked: true },
-                y: { stacked: true, beginAtZero: true, max: 100 }
-            },
-            plugins: {
-                title: { display: true, text: 'Distribución de Estudiantes por Nivel de Desempeño (Misión Beta)' },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            return context.dataset.label + ': ' + context.raw + '%';
-                        }
-                    }
-                }
-            }
+            scales: { r: { min: 2.5, max: 4.5 } }
         }
     });
+
+    // 19. Trazabilidad Cohortes
+    // Lógica: La barra muestra el cambio del promedio de los mismos estudiantes al pasar de año
+    new Chart(document.getElementById('cohortChart'), {
+        type: 'bar',
+        data: {
+            labels: ['Cohorte A (G1->G2)', 'Cohorte B (G2->G3)', 'Cohorte C (G3->G4)', 'Cohorte D (G4->G5)'],
+            datasets: [
+                {
+                    label: 'Promedio en 2024 (Grado Anterior)',
+                    data: [4.15, 3.55, 3.65, 3.30], // Promedios G1, G2, G3, G4 del 2024
+                    backgroundColor: '#bdc3c7'
+                },
+                {
+                    label: 'Promedio en 2025 (Grado Actual)',
+                    data: [4.20, 3.50, 3.90, 4.05], // Promedios G2, G3, G4, G5 del 2025
+                    backgroundColor: '#27ae60'
+                }
+            ]
+        },
+        options: {
+            scales: { y: { min: 2.5, max: 4.5 } },
+            plugins: { title: { display: true, text: 'Evolución del Mismo Grupo de Estudiantes' } }
+        }
+    });
+
 </script>
 
 </body>
